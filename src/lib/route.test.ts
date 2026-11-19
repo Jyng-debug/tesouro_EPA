@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { nextSeq, routeOrder } from "./route";
 import { distanceMeters, formatDistance } from "./geo";
+import { formatDuration } from "./format";
 
 describe("routeOrder", () => {
   it("começa no posto inicial e dá a volta", () => {
@@ -37,5 +38,14 @@ describe("distanceMeters", () => {
   it("formata em português", () => {
     expect(formatDistance(74.6)).toBe("75 m");
     expect(formatDistance(1530)).toBe("1,5 km");
+  });
+});
+
+describe("formatDuration", () => {
+  it("usa dias, horas, minutos ou segundos conforme a duração", () => {
+    expect(formatDuration(45_000)).toBe("45 s");
+    expect(formatDuration(12 * 60_000 + 30_000)).toBe("12 min 30 s");
+    expect(formatDuration(65 * 60_000)).toBe("1 h 05 min");
+    expect(formatDuration((3 * 24 + 4) * 3600_000)).toBe("3 dias e 4 h");
   });
 });

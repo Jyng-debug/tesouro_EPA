@@ -2,10 +2,13 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import { VitePWA } from "vite-plugin-pwa";
 import path from "node:path";
+import basicSsl from "@vitejs/plugin-basic-ssl";
 
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   server: { host: "::", port: 8080 },
   plugins: [
+    // `npm run dev:telemovel`: HTTPS com certificado local, para testar câmara e GPS num telemóvel na mesma rede.
+    ...(mode === "telemovel" ? [basicSsl()] : []),
     react(),
     VitePWA({
       registerType: "autoUpdate",
@@ -48,4 +51,4 @@ export default defineConfig({
   ],
   resolve: { alias: { "@": path.resolve(__dirname, "./src") } },
   test: { environment: "node", include: ["src/**/*.test.ts"] },
-} as never);
+}) as never);

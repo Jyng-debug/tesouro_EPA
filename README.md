@@ -106,6 +106,28 @@ npx supabase gen types typescript --project-id imryfgenvpcjhdsthidg > src/integr
 
 > **Plano gratuito:** o Supabase pausa projetos sem atividade durante cerca de uma semana. Se a app deixar de responder, entrar no painel do Supabase e carregar em **Restore project**.
 
+## Testar a app das equipas
+
+```bash
+npm run dev
+```
+
+1. Abrir http://localhost:8080 e entrar com o código `EPA-TST2` ou `EPA-TST3` (a `EPA-TST1` já tem submissões de teste).
+2. Aceitar o aviso de privacidade → ecrã inicial com cronómetro, pontuação, próximo posto e lista dos 7 postos.
+3. Abrir um posto → **Tirar fotografia** → escrever a resposta → **Enviar desafio**.
+4. Responder à pergunta (uma única tentativa).
+5. Testar sem rede: nas DevTools do Chrome (F12 → Network → **Offline**) enviar uma foto; aparece "A aguardar envio". Voltar a **Online**: é enviada sozinha.
+
+### No telemóvel (câmara e GPS)
+
+O GPS só funciona em HTTPS (ou em `localhost`). Para testar num telemóvel ligado à **mesma rede Wi-Fi**:
+
+```bash
+npm run dev:telemovel
+```
+
+Abrir no telemóvel o endereço `https://…:8080` indicado como **Network**. O browser avisa que o certificado não é de confiança (é local): escolher "Avançadas" → "Continuar".
+
 ## Pontuação
 
 | Item | Pontos |
