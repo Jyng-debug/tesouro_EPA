@@ -128,6 +128,15 @@ npm run dev:telemovel
 
 Abrir no telemóvel o endereço `https://…:8080` indicado como **Network**. O browser avisa que o certificado não é de confiança (é local): escolher "Avançadas" → "Continuar".
 
+Se o telemóvel não abrir a página (Wi-Fi da escola ou de convidados costuma bloquear ligações entre aparelhos, ou a Firewall do Windows bloqueia o Node.js), usar um túnel HTTPS temporário — funciona até com o telemóvel nos dados móveis:
+
+```bash
+npm run dev        # terminal 1
+npm run tunel      # terminal 2 → mostra um endereço https://….trycloudflare.com
+```
+
+Abrir esse endereço no telemóvel. O endereço muda sempre que se volta a correr `npm run tunel` e deixa de funcionar quando se fecha o terminal.
+
 ## Pontuação
 
 | Item | Pontos |

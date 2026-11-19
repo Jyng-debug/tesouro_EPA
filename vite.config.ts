@@ -5,7 +5,12 @@ import path from "node:path";
 import basicSsl from "@vitejs/plugin-basic-ssl";
 
 export default defineConfig(({ mode }) => ({
-  server: { host: "::", port: 8080 },
+  server: {
+    host: "::",
+    port: 8080,
+    // Permite o túnel temporário `npm run tunel` (endereço https://….trycloudflare.com).
+    allowedHosts: [".trycloudflare.com"],
+  },
   plugins: [
     // `npm run dev:telemovel`: HTTPS com certificado local, para testar câmara e GPS num telemóvel na mesma rede.
     ...(mode === "telemovel" ? [basicSsl()] : []),
